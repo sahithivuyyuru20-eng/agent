@@ -1,11 +1,28 @@
-# State Tracking
+def track_state():
+    state = {
+        "done": False,
+        "stage": 0,
+        "status": None
+    }
 
-state = "START"
+    max_iters = 10
 
-print("Current state:", state)
+    for i in range(max_iters):
+        state["stage"] += 1
+        print(f"Iteration {state['stage']}")
 
-state = "RUNNING"
-print("Current state:", state)
+        print("Observe")
+        print("Decide")
+        print("Act")
 
-state = "COMPLETED"
-print("Current state:", state)
+        if state["stage"] == 3:
+            state["done"] = True
+            state["status"] = "success"
+            return state
+
+    state["done"] = True
+    state["status"] = "failure"
+    return state
+
+result = track_state()
+print(result)
